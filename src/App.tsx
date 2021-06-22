@@ -1,21 +1,19 @@
-import { useState } from "react";
-import { Button } from "./components/Button";
+import { BrowserRouter, Route } from 'react-router-dom'
+
+import { Home } from "./pages/Home";
+import { NewRoom } from "./pages/NewRoom";
+
+import { AuthContextProvider } from './contexts/AuthContext'
 
 export function App() {
-
-  //let counter = 0;
-
-  const [ counter, setCounter ]  = useState(0);
-
-  function increment() {
-    setCounter(counter + 1);
-    console.log(counter);
-  }
+  
   return (
-    <div className="App">
-      <button onClick={increment}>{counter}</button>
-      <Button title="Fechar" />
-    </div>
+    <BrowserRouter>
+      <AuthContextProvider>
+        <Route path='/' exact component={Home} />
+        <Route path='/rooms/new' component={NewRoom} />
+      </AuthContextProvider>
+    </BrowserRouter>
   );
 }
 
